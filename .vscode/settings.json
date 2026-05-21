@@ -1,0 +1,15 @@
+{
+  "rest-client.environmentVariables": {
+    "$shared": {
+      "version": "v1"
+    },
+    "local": {
+      "baseUrl": "http://localhost:5000",
+      "authToken": "placeholder_will_be_auto_replaced_by_auth_file"
+    },
+    "staging": {
+      "baseUrl": "https://staging-api.yourdomain.com",
+      "authToken": "placeholder_will_be_auto_replaced_by_auth_file"
+    }
+  }
+}
