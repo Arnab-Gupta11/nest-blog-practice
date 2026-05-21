@@ -66,7 +66,9 @@ export class Post {
   publishOn: Date;
 
   @OneToOne(() => MetaOption,{
-    cascade:true
+    cascade:true,
+    eager:true //Get meta option details along with post.
+
   })
   @JoinColumn()
   metaOptions?: MetaOption | null;

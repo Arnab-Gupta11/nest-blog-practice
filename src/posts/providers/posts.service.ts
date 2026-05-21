@@ -15,18 +15,23 @@ export class PostsService {
     @InjectRepository(Post)
     private readonly postsRepository: Repository<Post>,
      ) {}
-  public findAllPosts() {
-    return [
-      {
-        id: 1,
-        name: 'post1',
-      },
-      {
-        id: 2,
-        name: 'post2',
-      },
-    ];
+
+  /**
+   *  Get All Post
+   */
+  public async findAllPosts() {
+     /**
+      * Get meta option details along with post.
+      */  
+    // const result= await this.postsRepository.find({
+    //   relations:{
+    //     metaOptions:true
+    //   }
+    // })
+    const result= await this.postsRepository.find()
+    return result;
   }
+
 
   public findPostById(userId: string) {
     const user = this.usersService.findUserById(userId);
@@ -42,7 +47,9 @@ export class PostsService {
       name: 'Rahim',
     };
   }
-
+  /**
+   * Create Post . 
+   */
   public async createPost(createPostDto: CreatePostDto) { 
     //Create Post
     const newPost = this.postsRepository.create(createPostDto);

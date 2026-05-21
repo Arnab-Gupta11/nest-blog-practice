@@ -8,9 +8,9 @@ import { PatchPostDTO } from './dtos/patch-post.dto';
 export class PostsController {
   constructor(private readonly postsService: PostsService) {}
 
-  @Get('/:id')
-  public getPostById(@Param('id') userId: string) {
-    return this.postsService.findPostById(userId);
+  @Get()
+  public getPostById() {
+    return this.postsService.findAllPosts();
   }
 
   @ApiOperation({
