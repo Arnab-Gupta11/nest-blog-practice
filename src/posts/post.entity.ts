@@ -1,7 +1,6 @@
 import {
   Column,
   Entity,
-  JoinColumn,
   OneToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
@@ -65,12 +64,11 @@ export class Post {
   })
   publishOn: Date;
 
-  @OneToOne(() => MetaOption,{
+  @OneToOne(() => MetaOption,(metaOptions)=>metaOptions.post,{
     cascade:true,
     eager:true //Get meta option details along with post.
 
   })
-  @JoinColumn()
   metaOptions?: MetaOption | null;
 
   tags?: string[];
