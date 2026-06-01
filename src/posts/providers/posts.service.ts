@@ -56,4 +56,12 @@ export class PostsService {
     const result = await this.postsRepository.save(newPost);
     return result;
   }
+
+  public async deletePost(id:number){
+    const result= await this.postsRepository.delete(id);
+    return result;
+  }
+
+
+
 }

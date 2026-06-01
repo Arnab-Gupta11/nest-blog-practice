@@ -1,12 +1,14 @@
 import {
   Column,
   Entity,
+  ManyToOne,
   OneToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import { postType } from './enums/postType.enum';
 import { postStatus } from './enums/postStatus.enum';
 import { MetaOption } from 'src/meta-options/meta-option.entity';
+import { User } from 'src/users/user.entity';
 
 @Entity()
 export class Post {
@@ -67,9 +69,11 @@ export class Post {
   @OneToOne(() => MetaOption,(metaOptions)=>metaOptions.post,{
     cascade:true,
     eager:true //Get meta option details along with post.
-
   })
   metaOptions?: MetaOption | null;
+
+  @ManyToOne(()=>User, (user)=> user.posts)
+  author:User;
 
   tags?: string[];
 }
