@@ -21,31 +21,17 @@ export class UsersService {
     private userRepository: Repository<User>,
   ) {}
   public findAllUsers() {
-    const isAuth = this.authService.isAuth();
-    if (isAuth) {
-      return [
-        {
-          id: 1,
-          name: 'Rahim',
-        },
-        {
-          id: 2,
-          name: 'Karim',
-        },
-      ];
-    }
-    return { message: 'User is not Authenticated' };
+    return this.userRepository.find({
+      relations:{
+        posts:true
+      }
+    });
   }
 
-  public findUserById(userId: string) {
-    console.log('USER ID:', userId);
-    if (userId === '1') {
-      return {
-        id: 1,
-        name: 'Karim',
-      };
-    }
-    return null;
+  public findUserById(userId: number) {
+   return this.userRepository.findOneBy({
+    id:userId
+   }) 
   }
 
   /**
