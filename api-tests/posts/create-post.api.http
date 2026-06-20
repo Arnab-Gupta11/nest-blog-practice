@@ -2,19 +2,19 @@ POST {{baseUrl}}/posts
 Content-Type: application/json
 
 {
-  "title": "my fourth blog post",
+  "title": "my first blog post",
   "postType": "post",
-  "slug": "my-fourth-blog-post",
+  "slug": "my-first-blog-post",
   "status": "draft",
   "content": "This is a sample content for the blog post.",
   "schema": "{\"@context\":\"https://schema.org\",\"@type\":\"BlogPosting\",\"headline\":\"My First Blog Post\"}",
   "featuredImageUrl": "https://example.com/images/post-image.jpg",
   "publishOn": "2026-04-29T10:00:00.000Z",
   "metaOptions": {
-      "metaValue": "{\"Footer\": true}"
+      "metaValue": "{\"Sidebar\": true}"
     },
-  "authorId":1
-
+  "authorId":1,
+  "tags":[1]
 }
 
 

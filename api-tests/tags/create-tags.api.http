@@ -1,0 +1,8 @@
+POST {{baseUrl}}/tags
+Content-Type: application/json
+
+{
+  "name":"Javascript",
+  "slug":"javascript",
+  "description":"this is javascript tag"
+}

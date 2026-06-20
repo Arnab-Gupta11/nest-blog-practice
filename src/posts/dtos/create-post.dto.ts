@@ -95,13 +95,12 @@ export class CreatePostDto {
 
   @ApiPropertyOptional({
     description: 'Array of tags passed as string values',
-    example: ['nestjs', 'backend', 'api'],
+    example: [1,2,3],
   })
   @IsOptional()
   @IsArray()
-  @IsString({ each: true })
-  @MinLength(3, { each: true })
-  tags?: string[];
+  @IsInt({ each: true })
+  tags?: number[];
 
   // @ApiPropertyOptional({
   //   type: 'object',

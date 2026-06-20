@@ -39,7 +39,6 @@ export class CreateTagDto {
     example: 'this is the description...',
   })
   @IsString()
-  @IsOptional()
   description?: string;
 
   @ApiPropertyOptional({

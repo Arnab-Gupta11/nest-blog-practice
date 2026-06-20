@@ -4,6 +4,8 @@ import { CreatePostDto } from '../dtos/create-post.dto';
 import { Repository } from 'typeorm';
 import { Post } from '../post.entity';
 import { InjectRepository } from '@nestjs/typeorm';
+import { TagsService } from 'src/tags/providers/tags.service';
+import { CreateTagDto } from 'src/tags/dtos/create-tag.dto';
 
 @Injectable()
 export class PostsService {
@@ -14,7 +16,14 @@ export class PostsService {
      */
     @InjectRepository(Post)
     private readonly postsRepository: Repository<Post>,
+
+    /**
+     * Inject Tag Service
+     */
+    private readonly tagService:TagsService
+
      ) {}
+
 
   /**
    *  Get All Post
@@ -52,30 +61,29 @@ export class PostsService {
    * Create Post . 
    */
  public async createPost(createPostDto: CreatePostDto) {
-  // ১. চেক করা হচ্ছে লেখক (Author) ডাটাবেজে আছেন কিনা
   const author = await this.usersService.findUserById(createPostDto.authorId);
+  let tags:CreateTagDto[]=[];
+  if(createPostDto.tags){
+   tags= await this.tagService.findMultipleTags(createPostDto.tags)
+  }
   
-  // Type Safety-এর জন্য পোস্ট ভেরিয়েবলটি আগে থেকেই Post টাইপ অথবা null হিসেবে ডিক্লেয়ার করা হলো
   let newPost: Post | null = null; 
-
-  // ২. dto থেকে authorId আলাদা করে নেওয়া হচ্ছে যেন টাইপ মিসম্যাচ না হয়
-  // const { authorId, ...postDetails } = createPostDto;
 
   // ৩. Create Post
   if (author) {
     newPost = this.postsRepository.create({
       ...createPostDto, 
-      author: author
+      author: author,
+      tags:tags
     });
   }
 
-  // ৪. Save Post (newPost যদি null না হয়, তবেই সেভ হবে)
   if (newPost) {
     const result = await this.postsRepository.save(newPost);
     return result;
   }
 
-  return null; // author না পাওয়া গেলে null রিটার্ন করবে
+  return null; 
 }
 
   public async deletePost(id:number){

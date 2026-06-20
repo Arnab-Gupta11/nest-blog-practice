@@ -10,9 +10,6 @@ import { MetaOptionsModule } from './meta-options/meta-options.module';
 
 @Module({
   imports: [
-    UsersModule,
-    PostsModule,
-    AuthModule,
     TypeOrmModule.forRootAsync({
       imports: [],
       inject: [],
@@ -28,6 +25,9 @@ import { MetaOptionsModule } from './meta-options/meta-options.module';
         database: 'nestjs-blog',
       }),
     }),
+    UsersModule,
+    PostsModule,
+    AuthModule,
     TagsModule,
     MetaOptionsModule,
   ],
