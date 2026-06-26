@@ -2,9 +2,9 @@ POST {{baseUrl}}/posts
 Content-Type: application/json
 
 {
-  "title": "my first blog post",
+  "title": "my second blog post",
   "postType": "post",
-  "slug": "my-first-blog-post",
+  "slug": "my-second-blog-post",
   "status": "draft",
   "content": "This is a sample content for the blog post.",
   "schema": "{\"@context\":\"https://schema.org\",\"@type\":\"BlogPosting\",\"headline\":\"My First Blog Post\"}",
@@ -14,7 +14,7 @@ Content-Type: application/json
       "metaValue": "{\"Sidebar\": true}"
     },
   "authorId":1,
-  "tags":[1]
+  "tags":[1,2]
 }
 
 

@@ -33,6 +33,12 @@ export class TagsService {
 
   }
 
+  //Delete tag
+  public async deleteTag(id:number){
+    const result= await this.tagRepository.delete(id);
+    return result;
+  }
+
 
 
 }

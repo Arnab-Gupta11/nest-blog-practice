@@ -1,0 +1,12 @@
+PATCH {{baseUrl}}/posts
+Content-Type: application/json
+
+{
+  "id": 2,
+  "title": "my second blog post",
+  "postType": "post",
+  "slug": "my-second-blog-post",
+  "tags":[1,2]
+}
+
+

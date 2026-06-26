@@ -34,7 +34,7 @@ export class PostsController {
   })
   @Patch()
   public updatePost(@Body() patchPostDto: PatchPostDTO) {
-    return patchPostDto;
+    return this.postsService.updatePost(patchPostDto);
   }
 
   @Delete('/:id')

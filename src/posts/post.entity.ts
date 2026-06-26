@@ -79,8 +79,11 @@ export class Post {
     eager:true
   })
   author:User;
-   
-  @ManyToMany(()=>Tag)
+
+  //JoinTabel decorator should declare on of the side. here post table is the owning side as we declare JoinTable on the post entity.
+  //================ Unidrectional / Bidirectional Many to Many =================    
+  @ManyToMany(()=>Tag)//Here also i can set eger to get tags along with post. also i can set in the servie.
   @JoinTable()
   tags?: Tag[];
+
 }
