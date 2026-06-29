@@ -21,6 +21,13 @@
     "noImplicitAny": false,
     "strictBindCallApply": false,
     "noFallthroughCasesInSwitch": false,
-    "strict": false
+    "strict": false,
+    "types": ["jest", "node"],
+    // "baseUrl": ".",
+    // "paths": {
+    //   "src/*": ["src/*"]
+    // },
+    // "ignoreDeprecations": "6.0"
+
   }
 }

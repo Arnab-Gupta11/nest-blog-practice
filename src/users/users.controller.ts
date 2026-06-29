@@ -14,10 +14,14 @@ import { GetUserParamsDTO } from './dtos/get-users-params.dto';
 import { UpdateUserDto } from './dtos/update-user-dto';
 import { UsersService } from './providers/users.service';
 import { ApiOperation, ApiQuery, ApiResponse } from '@nestjs/swagger';
+import { ConfigService } from '@nestjs/config';
 
 @Controller('users')
 export class UsersController {
-  constructor(private readonly usersService: UsersService) {}
+  constructor(
+    private readonly configService: ConfigService,
+    private readonly usersService: UsersService
+  ) {}
   @Get()
   @ApiOperation({
     summary: 'Fetches a list of registered users on the application',
@@ -45,7 +49,9 @@ export class UsersController {
     @Query('limit', new DefaultValuePipe(10), ParseIntPipe) limit: number,
     @Query('page', new DefaultValuePipe(1), ParseIntPipe) page: number,
   ) {
-    console.log(limit);
+
+    const environment = this.configService.get<string>('NODE_ENV');
+    console.log(environment);
 
     console.log(page);
     return this.usersService.findAllUsers();
