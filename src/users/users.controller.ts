@@ -3,6 +3,7 @@ import {
   Controller,
   DefaultValuePipe,
   Get,
+  Inject,
   Param,
   ParseIntPipe,
   Patch,
@@ -14,13 +15,20 @@ import { GetUserParamsDTO } from './dtos/get-users-params.dto';
 import { UpdateUserDto } from './dtos/update-user-dto';
 import { UsersService } from './providers/users.service';
 import { ApiOperation, ApiQuery, ApiResponse } from '@nestjs/swagger';
-import { ConfigService } from '@nestjs/config';
+import type { ConfigType } from '@nestjs/config';
+import profileConfig from './config/profile.config';
+// import { ConfigService } from '@nestjs/config';
 
 @Controller('users')
 export class UsersController {
   constructor(
-    private readonly configService: ConfigService,
-    private readonly usersService: UsersService
+    // private readonly configService: ConfigService,   //Alternative way to use env with configService
+    private readonly usersService: UsersService,
+    
+    @Inject(profileConfig.KEY)
+    private readonly profileConfiguration: ConfigType<typeof profileConfig>
+
+
   ) {}
   @Get()
   @ApiOperation({
@@ -50,8 +58,11 @@ export class UsersController {
     @Query('page', new DefaultValuePipe(1), ParseIntPipe) page: number,
   ) {
 
-    const environment = this.configService.get<string>('NODE_ENV');
-    console.log(environment);
+    // const environment = this.configService.get<string>('NODE_ENV');
+    // console.log(environment);
+
+    console.log(this.profileConfiguration)
+    console.log(this.profileConfiguration.apiKey)
 
     console.log(page);
     return this.usersService.findAllUsers();
