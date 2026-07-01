@@ -10,6 +10,7 @@ import { MetaOptionsModule } from './meta-options/meta-options.module';
 import {ConfigModule, ConfigService} from "@nestjs/config"
 import appConfig from './config/app.config';
 import databaseConfig from './config/database.config';
+import environmentValidation from './config/environment.validation';
 
 
 // const ENV = process.env.NODE_ENV;
@@ -19,7 +20,8 @@ import databaseConfig from './config/database.config';
     ConfigModule.forRoot({
       isGlobal:true,
       // envFilePath: !ENV ? '.env' : `.env.${ENV}`
-      load:[appConfig,databaseConfig]
+      load:[appConfig,databaseConfig],
+      validationSchema:environmentValidation
     }),
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
