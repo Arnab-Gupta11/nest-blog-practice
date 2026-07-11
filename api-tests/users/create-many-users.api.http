@@ -1,0 +1,21 @@
+POST {{baseUrl}}/users/create-many
+Content-Type: application/json
+
+{
+  "users": [
+    {
+      "firstName": "Arnab",
+      "lastName": "Gupta",
+      "email": "ag@gmail.com",
+      "password": "aA@12345"
+    },
+
+    {
+      "firstName": "Joy",
+      "lastName": "Gupta",
+      "email": "joy@gmail.com",
+      "password": "aA@12345"
+    }
+  ]
+}
+

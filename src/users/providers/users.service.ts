@@ -4,6 +4,8 @@ import { AuthService } from 'src/auth/providers/auth.service';
 import { Repository } from 'typeorm';
 import { User } from '../user.entity';
 import { InjectRepository } from '@nestjs/typeorm';
+import { CreateManyUsersDto } from '../dtos/create-many-users.dto';
+import { CreateManyUsersProvider } from './create-many-users.provider';
 
 @Injectable()
 export class UsersService {
@@ -19,6 +21,13 @@ export class UsersService {
      */
     @InjectRepository(User)
     private userRepository: Repository<User>,
+
+    /**
+     * Injecting many users provider
+     */
+    private readonly createManyUsersProvider : CreateManyUsersProvider,
+
+
   ) {}
   public findAllUsers() {
     return this.userRepository.find({
@@ -42,4 +51,13 @@ export class UsersService {
     newUser = await this.userRepository.save(newUser);
     return newUser;
   }
+
+  /**
+   * Create new User
+   */
+  public async createManyUser(createManyUsersDto: CreateManyUsersDto) {
+    const newUsers = this.createManyUsersProvider.createManyUser(createManyUsersDto);
+    return newUsers;
+  }
+  
 }
