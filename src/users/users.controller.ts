@@ -25,11 +25,11 @@ export class UsersController {
   constructor(
     // private readonly configService: ConfigService,   //Alternative way to use env with configService
     private readonly usersService: UsersService,
-    
+
     @Inject(profileConfig.KEY)
     private readonly profileConfiguration: ConfigType<typeof profileConfig>
 
-
+    // this is test comment
   ) {}
   @Get()
   @ApiOperation({
