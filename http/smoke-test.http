@@ -1,0 +1,61 @@
+### Smoke Test Flow (End-to-End Sanity Check)
+
+### 1. Create Author User
+# @name smokeCreateUser
+POST {{baseUrl}}/users
+Content-Type: application/json
+
+{
+  "firstName": "SmokeTest",
+  "lastName": "User",
+  "email": "smoketest.user@example.com",
+  "password": "Password123!"
+}
+
+###
+
+### 2. Create Tag
+# @name smokeCreateTag
+POST {{baseUrl}}/tags
+Content-Type: application/json
+
+{
+  "name": "smoke-test-tag",
+  "slug": "smoke-test-tag",
+  "description": "Tag generated during E2E smoke test"
+}
+
+###
+
+### 3. Create Post (Chained with created user ID & tag ID)
+# @name smokeCreatePost
+POST {{baseUrl}}/posts
+Content-Type: application/json
+
+{
+  "title": "Smoke Test Post",
+  "postType": "post",
+  "slug": "smoke-test-post",
+  "status": "published",
+  "content": "This post was created during the end-to-end smoke test execution.",
+  "authorId": {{smokeCreateUser.response.body.$.id}},
+  "tags": [{{smokeCreateTag.response.body.$.id}}]
+}
+
+###
+
+### 4. Fetch All Posts (Verify post creation & relations)
+GET {{baseUrl}}/posts
+Content-Type: application/json
+
+###
+
+### 5. Cleanup: Delete Created Post
+DELETE {{baseUrl}}/posts/{{smokeCreatePost.response.body.$.id}}
+Content-Type: application/json
+
+###
+
+### 6. Cleanup: Soft Delete Tag
+DELETE {{baseUrl}}/tags/{{smokeCreateTag.response.body.$.id}}
+Content-Type: application/json

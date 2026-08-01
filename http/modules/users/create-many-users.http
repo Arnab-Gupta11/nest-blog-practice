@@ -1,0 +1,21 @@
+### Create Many Users (Batch)
+# @name createManyUsers
+POST {{baseUrl}}/users/create-many
+Content-Type: application/json
+
+{
+  "users": [
+    {
+      "firstName": "Alice",
+      "lastName": "Smith",
+      "email": "alice@example.com",
+      "password": "Password123!"
+    },
+    {
+      "firstName": "Bob",
+      "lastName": "Johnson",
+      "email": "bob@example.com",
+      "password": "Password123!"
+    }
+  ]
+}

@@ -1,0 +1,4 @@
+### Get Single User by ID
+# @name getUserById
+GET {{baseUrl}}/users/1
+Content-Type: application/json

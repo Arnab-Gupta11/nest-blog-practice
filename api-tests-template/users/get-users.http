@@ -1,0 +1,8 @@
+### Get all users
+# Option A (dynamic): run auth/login.http once this session first —
+#   {{authToken}} gets set automatically by the post-response script.
+# Option B (static token APIs): skip login.http entirely and use
+#   {{apiToken}} from http-client.private.env.json directly instead —
+#   just swap the header below to `Authorization: Bearer {{apiToken}}`.
+GET {{baseUrl}}/users?page=1&limit=20
+Authorization: Bearer {{authToken}}

@@ -10,10 +10,13 @@ async function bootstrap() {
       whitelist: true,
       forbidNonWhitelisted: true,
       transform: true,
+      transformOptions: {
+        enableImplicitConversion: true, //this option enable implicite type conversion. so we dont need to add Type decorator in dtos for type conversion. see example in paginationQuery.dto
+      },
     }),
   );
-  //Swagger Configuration:
   const config = new DocumentBuilder()
+    //Swagger Configuration:
     .setVersion('1.0')
     .setTitle('Blog App Server')
     .setDescription('Use the base url as : http://localhost:5000')

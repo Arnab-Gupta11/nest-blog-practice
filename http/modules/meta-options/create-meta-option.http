@@ -1,0 +1,8 @@
+### Create Meta Option
+# @name createMetaOption
+POST {{baseUrl}}/meta-options
+Content-Type: application/json
+
+{
+  "metaValue": "{\"sidebar\": true, \"theme\": \"dark\"}"
+}

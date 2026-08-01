@@ -1,0 +1,7 @@
+# Real secrets — never commit this. Copy http-client.private.env.json.example
+# to http-client.private.env.json and fill in real values locally.
+http-client.private.env.json
+
+# kulala.nvim's local cache / generated schema files
+.kulala/
+*.graphql-schema.json

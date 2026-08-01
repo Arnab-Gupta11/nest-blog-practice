@@ -1,0 +1,11 @@
+### Login / Authenticate User
+# @name login
+POST {{baseUrl}}/auth/login
+Content-Type: application/json
+
+{
+  "email": "john.doe@example.com",
+  "password": "Password123!"
+}
+
+> ./../scripts/save-auth-token.js

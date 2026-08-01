@@ -27,9 +27,7 @@ export class UsersController {
     private readonly usersService: UsersService,
 
     @Inject(profileConfig.KEY)
-    private readonly profileConfiguration: ConfigType<typeof profileConfig>
-
-    // this is test comment
+    private readonly profileConfiguration: ConfigType<typeof profileConfig>,
   ) {}
   @Get()
   @ApiOperation({
@@ -58,14 +56,10 @@ export class UsersController {
     @Query('limit', new DefaultValuePipe(10), ParseIntPipe) limit: number,
     @Query('page', new DefaultValuePipe(1), ParseIntPipe) page: number,
   ) {
-
     // const environment = this.configService.get<string>('NODE_ENV');
     // console.log(environment);
-
-    console.log(this.profileConfiguration)
-    console.log(this.profileConfiguration.apiKey)
-
-    console.log(page);
+    console.log(this.profileConfiguration);
+    console.log(this.profileConfiguration.apiKey);
     return this.usersService.findAllUsers();
   }
 

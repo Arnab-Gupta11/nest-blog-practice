@@ -1,0 +1,4 @@
+### Delete Post by ID
+# @name deletePost
+DELETE {{baseUrl}}/posts/1
+Content-Type: application/json

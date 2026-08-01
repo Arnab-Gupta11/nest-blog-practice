@@ -1,0 +1,15 @@
+### Create a new user (dynamic variables generate fresh values every run)
+# @name CREATE_USER
+POST {{baseUrl}}/users
+Authorization: Bearer {{authToken}}
+Content-Type: application/json
+
+{
+  "id": "{{$uuid}}",
+  "name": "Test User",
+  "email": "test-{{$timestamp}}@example.com"
+}
+
+### Verify the user we just created — chained from CREATE_USER's response
+GET {{baseUrl}}/users/{{CREATE_USER.response.body.$.id}}
+Authorization: Bearer {{authToken}}

@@ -1,0 +1,17 @@
+### Create Blog Post
+# @name createPost
+POST {{baseUrl}}/posts
+Content-Type: application/json
+
+{
+  "title": "Scalable NestJS API Testing",
+  "postType": "post",
+  "slug": "scalable-nestjs-api-testing",
+  "status": "draft",
+  "content": "A detailed guide on setting up modular HTTP requests using kulala.nvim.",
+  "schema": "{\"type\":\"article\"}",
+  "featuredImageUrl": "http://example.com/images/nest.png",
+  "publishOn": "2026-08-01T00:00:00.000Z",
+  "authorId": 1,
+  "tags": [1]
+}

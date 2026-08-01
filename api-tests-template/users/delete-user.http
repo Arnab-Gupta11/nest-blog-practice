@@ -1,0 +1,5 @@
+@userId = 1
+
+### Delete a user
+DELETE {{baseUrl}}/users/{{userId}}
+Authorization: Bearer {{authToken}}

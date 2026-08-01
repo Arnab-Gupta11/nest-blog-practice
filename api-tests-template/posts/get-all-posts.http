@@ -1,0 +1,3 @@
+### Get all posts (paginated)
+GET {{baseUrl}}/posts?page=1&limit=10
+Authorization: Bearer {{authToken}}

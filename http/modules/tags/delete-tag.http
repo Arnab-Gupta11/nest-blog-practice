@@ -1,0 +1,4 @@
+### Soft Delete Tag by ID
+# @name deleteTag
+DELETE {{baseUrl}}/tags/1
+Content-Type: application/json

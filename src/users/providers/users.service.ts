@@ -25,22 +25,20 @@ export class UsersService {
     /**
      * Injecting many users provider
      */
-    private readonly createManyUsersProvider : CreateManyUsersProvider,
-
-
+    private readonly createManyUsersProvider: CreateManyUsersProvider,
   ) {}
   public findAllUsers() {
     return this.userRepository.find({
-      relations:{
-        posts:true
-      }
+      relations: {
+        posts: true,
+      },
     });
   }
 
   public findUserById(userId: number) {
-   return this.userRepository.findOneBy({
-    id:userId
-   }) 
+    return this.userRepository.findOneBy({
+      id: userId,
+    });
   }
 
   /**
@@ -56,8 +54,8 @@ export class UsersService {
    * Create new User
    */
   public async createManyUser(createManyUsersDto: CreateManyUsersDto) {
-    const newUsers = this.createManyUsersProvider.createManyUser(createManyUsersDto);
+    const newUsers =
+      this.createManyUsersProvider.createManyUser(createManyUsersDto);
     return newUsers;
   }
-  
 }

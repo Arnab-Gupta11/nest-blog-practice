@@ -1,0 +1,11 @@
+### Create Tag
+# @name createTag
+POST {{baseUrl}}/tags
+Content-Type: application/json
+
+{
+  "name": "nest-js",
+  "slug": "nest-js",
+  "description": "NestJS backend framework topic",
+  "schema": "{\"topic\":\"nest\"}"
+}

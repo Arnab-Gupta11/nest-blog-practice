@@ -1,0 +1,10 @@
+### Update User Details (Patch)
+# @name updateUser
+PATCH {{baseUrl}}/users
+Content-Type: application/json
+
+{
+  "id": 1,
+  "firstName": "John Updated",
+  "lastName": "Doe Updated"
+}

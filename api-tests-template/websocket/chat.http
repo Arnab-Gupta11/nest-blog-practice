@@ -1,0 +1,10 @@
+### Connect to the chat websocket
+WEBSOCKET {{wsUrl}}/chat
+Authorization: Bearer {{authToken}}
+
+### Send a message after connecting (kulala keeps the connection open —
+### run this while the WEBSOCKET request above is still active)
+{
+  "type": "message",
+  "text": "hello from kulala"
+}

@@ -1,0 +1,19 @@
+### Login and store a fresh access token globally for every other request
+# @name LOGIN
+POST {{baseUrl}}/auth/login
+Content-Type: application/json
+
+{
+  "email": "{{loginEmail}}",
+  "password": "{{loginPassword}}"
+}
+
+> ./../scripts/post-response-save-token.js
+
+### Refresh token (if your API supports it)
+# @name REFRESH
+POST {{baseUrl}}/auth/refresh
+Content-Type: application/json
+Authorization: Bearer {{authToken}}
+
+> ./../scripts/post-response-save-token.js

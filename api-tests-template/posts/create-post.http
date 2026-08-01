@@ -1,0 +1,21 @@
+### Create a post — pre-request script attaches a request timestamp header
+< ./../scripts/pre-request-timestamp.js
+
+# @name CREATE_POST
+POST {{baseUrl}}/posts
+Authorization: Bearer {{authToken}}
+Content-Type: application/json
+X-Request-Time: {{requestTime}}
+
+{
+  "title": "My first post",
+  "body": "Hello world",
+  "meta": {
+    "tags": ["intro", "test"],
+    "published": false
+  }
+}
+
+### Fetch the post we just created
+GET {{baseUrl}}/posts/{{CREATE_POST.response.body.$.id}}
+Authorization: Bearer {{authToken}}

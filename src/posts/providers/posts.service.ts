@@ -97,17 +97,16 @@ export class PostsService {
     }
 
     //Find the Post
-    const post= await this.postsRepository.findOneBy({
-      id:patchPostDto.id
-    }) 
+    const post = await this.postsRepository.findOneBy({
+      id: patchPostDto.id,
+    });
 
     //Update the Properties.
-    if(post){
-      post.title= patchPostDto.title ?? post?.title;
-      post.content= patchPostDto.content ?? post?.content;
-      post.status=patchPostDto.status ?? post.status;
-      post.tags= tags && tags;
-
+    if (post) {
+      post.title = patchPostDto.title ?? post?.title;
+      post.content = patchPostDto.content ?? post?.content;
+      post.status = patchPostDto.status ?? post.status;
+      post.tags = tags && tags;
       return await this.postsRepository.save(post);
     }
 

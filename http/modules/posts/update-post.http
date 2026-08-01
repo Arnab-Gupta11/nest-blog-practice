@@ -1,0 +1,12 @@
+### Update Blog Post (Patch)
+# @name updatePost
+PATCH {{baseUrl}}/posts
+Content-Type: application/json
+
+{
+  "id": 1,
+  "title": "Scalable NestJS API Testing (Updated)",
+  "content": "Updated post content body.",
+  "status": "published",
+  "tags": [1]
+}

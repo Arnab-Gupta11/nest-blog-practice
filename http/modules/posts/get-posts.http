@@ -1,0 +1,4 @@
+### Get All Posts
+# @name getPosts
+GET {{baseUrl}}/posts
+Content-Type: application/json

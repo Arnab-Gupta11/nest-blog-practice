@@ -1,0 +1,5 @@
+@userId = 1
+
+### Get a single user by ID
+GET {{baseUrl}}/users/{{userId}}
+Authorization: Bearer {{authToken}}

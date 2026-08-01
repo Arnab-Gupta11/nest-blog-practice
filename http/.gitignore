@@ -1,0 +1,6 @@
+# Private env file with real credentials/tokens
+http-client.private.env.json
+
+# Response logs and temp artifacts
+*.log
+.kulala*

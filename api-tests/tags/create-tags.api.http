@@ -1,8 +1,0 @@
-POST {{baseUrl}}/tags
-Content-Type: application/json
-
-{
-  "name":"Python",
-  "slug":"python",
-  "description":"this is python tag"
-}

@@ -1,0 +1,19 @@
+### End-to-end smoke test: composes requests from other files into one flow.
+### Run this whole file with <leader>Ra to sanity-check the full user
+### lifecycle in one shot — great for a quick "is the API alive" check
+### before starting work, or in CI.
+
+import ./auth/login.http
+import ./users/create-user.http
+import ./users/delete-user.http
+
+### Step 1: log in (sets {{authToken}} globally for every request below)
+run #LOGIN
+
+### Step 2: create a user (also verifies it can be fetched right after)
+run #CREATE_USER
+
+### Step 3: clean up — delete the user we just made
+# Note: delete-user.http currently deletes a hardcoded @userId — in a real
+# suite you'd chain CREATE_USER's returned id into this instead, e.g.:
+#   DELETE {{baseUrl}}/users/{{CREATE_USER.response.body.$.id}}
