@@ -8,6 +8,9 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { CreateTagDto } from 'src/tags/dtos/create-tag.dto';
 import { TagsService } from 'src/tags/providers/tags.service';
 import { Tag } from 'src/tags/tag.entity';
+import { GetPostsDto } from '../dtos/get-posts.dto';
+import { PaginationProvider } from 'src/common/pagination/providers/pagination.provider';
+import { Paginated } from 'src/common/pagination/interfaces/paginated.interface';
 
 @Injectable()
 export class PostsService {
@@ -23,22 +26,27 @@ export class PostsService {
      * Inject Tag Service
      */
     private readonly tagService: TagsService,
+
+    /**
+     * Inject Pagination Provider
+     */
+    private readonly paginationProvider: PaginationProvider,
   ) {}
 
   /**
    *  Get All Post
    */
-  public async findAllPosts() {
+  public async findAllPosts(postQuery: GetPostsDto): Promise<Paginated<Post>> {
     /**
      * Get meta option and author details along with post. ====> Best prctice
      */
-    const result = await this.postsRepository.find({
-      relations: {
-        // metaOptions:true,
-        // author:true,
-        tags: true,
+    const result = await this.paginationProvider.PaginateQuery(
+      {
+        page: postQuery.page,
+        limit: postQuery.limit,
       },
-    });
+      this.postsRepository,
+    );
     return result;
   }
 

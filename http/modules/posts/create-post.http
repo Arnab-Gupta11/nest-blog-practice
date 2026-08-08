@@ -1,5 +1,11 @@
 ### Create Blog Post
 # @name createPost
+
+< {%
+  const currentDate = new Date().toISOString();
+  client.global.set("currentIsoDate", currentDate);
+%}
+
 POST {{baseUrl}}/posts
 Content-Type: application/json
 
@@ -11,7 +17,7 @@ Content-Type: application/json
   "content": "A detailed guide on setting up modular HTTP requests using kulala.nvim.",
   "schema": "{\"type\":\"article\"}",
   "featuredImageUrl": "http://example.com/images/nest.png",
-  "publishOn": "2026-08-01T00:00:00.000Z",
+  "publishOn":"{{currentIsoDate}}",
   "authorId": 1,
   "tags": [1]
 }

@@ -95,7 +95,7 @@ export class CreatePostDto {
 
   @ApiPropertyOptional({
     description: 'Array of tags passed as string values',
-    example: [1,2,3],
+    example: [1, 2, 3],
   })
   @IsOptional()
   @IsArray()
@@ -135,11 +135,11 @@ export class CreatePostDto {
   metaOptions?: CreatePostMetaOptionsDto | null;
 
   @ApiProperty({
-    type:'integer',
-    required:true,
-    example:1
+    type: 'integer',
+    required: true,
+    example: 1,
   })
   @IsNotEmpty()
   @IsInt()
-  authorId:number;
+  authorId: number;
 }
