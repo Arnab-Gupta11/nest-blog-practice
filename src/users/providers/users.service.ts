@@ -7,6 +7,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { CreateManyUsersDto } from '../dtos/create-many-users.dto';
 import { CreateManyUsersProvider } from './create-many-users.provider';
 import { CreateUserProvider } from './create-user.provider';
+import { FindUserByEmailProvider } from './find-user-by-email.provider';
 
 @Injectable()
 export class UsersService {
@@ -32,7 +33,13 @@ export class UsersService {
      * Injecting create users provider
      */
     private readonly createUserProvider: CreateUserProvider,
+
+    /**
+     * Injecting find user by email  provider
+     */
+    private readonly findUserByEmailProvider: FindUserByEmailProvider,
   ) {}
+
   public findAllUsers() {
     return this.userRepository.find({
       relations: {
@@ -47,6 +54,10 @@ export class UsersService {
     });
   }
 
+  //Find user by email
+  public findOneUserByEmail(email: string) {
+    return this.findUserByEmailProvider.findOneUserByEmail(email);
+  }
   /**
    * Create new User
    */

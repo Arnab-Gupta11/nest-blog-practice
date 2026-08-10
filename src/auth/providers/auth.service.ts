@@ -1,14 +1,17 @@
-import { forwardRef, Inject, Injectable } from '@nestjs/common';
-import { UsersService } from 'src/users/providers/users.service';
+import { SignInProvider } from './sign-in.provider';
+import { SignInDTO } from '../dtos/signIn.dto';
+import { Injectable } from '@nestjs/common';
 
 @Injectable()
 export class AuthService {
   constructor(
-    @Inject(forwardRef(() => UsersService))
-    private readonly usersService: UsersService,
+    /**
+    Injecting SingIn Provider
+    */
+    private readonly signInProvider: SignInProvider,
   ) {}
 
-  public isAuth() {
-    return true;
+  public async signInUser(signInDto: SignInDTO) {
+    return this.signInProvider.signInUser(signInDto);
   }
 }
