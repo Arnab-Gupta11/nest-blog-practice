@@ -4,8 +4,8 @@ POST {{baseUrl}}/users
 Content-Type: application/json
 
 {
-  "firstName": "John",
+  "firstName": "Mark",
   "lastName": "Doe",
-  "email": "john.doe@example.com",
+  "email": "mark.doe@example.com",
   "password": "Password123!"
 }
