@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import {
   Body,
   Controller,
@@ -9,6 +10,7 @@ import {
   Patch,
   Post,
   Query,
+  UseGuards,
 } from '@nestjs/common';
 import { CreateUserDto } from './dtos/create-user.dto';
 import { GetUserParamsDTO } from './dtos/get-users-params.dto';
@@ -18,6 +20,7 @@ import { ApiOperation, ApiQuery, ApiResponse } from '@nestjs/swagger';
 import type { ConfigType } from '@nestjs/config';
 import profileConfig from './config/profile.config';
 import { CreateManyUsersDto } from './dtos/create-many-users.dto';
+import { AccessTokenGuard } from 'src/auth/guards/access-token/access-token.guard';
 // import { ConfigService } from '@nestjs/config';
 
 @Controller('users')
@@ -74,6 +77,7 @@ export class UsersController {
     return this.usersService.createUser(createUserDto);
   }
 
+  @UseGuards(AccessTokenGuard)
   @Post('/create-many')
   createManyUsers(@Body() createManyUsersDto: CreateManyUsersDto) {
     return this.usersService.createManyUser(createManyUsersDto);

@@ -2,6 +2,7 @@
 # @name createManyUsers
 POST {{baseUrl}}/users/create-many
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjIsImVtYWlsIjoibWFyay5kb2VAZXhhbXBsZS5jb20iLCJpYXQiOjE3ODY1MTE4NzAsImV4cCI6MTc4NjUxNTQ3MCwiYXVkIjoibG9jYWxob3N0OjMwMDAiLCJpc3MiOiJsb2NhbGhvc3Q6MzAwMCJ9.XuqGwYOrHkngx17JGawdvJd5vL66UfJxi0Eprl2E38A
 
 {
   "users": [
