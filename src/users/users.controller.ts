@@ -21,6 +21,8 @@ import type { ConfigType } from '@nestjs/config';
 import profileConfig from './config/profile.config';
 import { CreateManyUsersDto } from './dtos/create-many-users.dto';
 import { AccessTokenGuard } from 'src/auth/guards/access-token/access-token.guard';
+import { Auth } from 'src/auth/decorators/auth.decorator';
+import { AuthType } from 'src/auth/enums/auth-type.enum';
 // import { ConfigService } from '@nestjs/config';
 
 @Controller('users')
@@ -73,11 +75,12 @@ export class UsersController {
   }
 
   @Post()
+  @Auth(AuthType.None, AuthType.Bearer)
   createUser(@Body() createUserDto: CreateUserDto) {
     return this.usersService.createUser(createUserDto);
   }
 
-  @UseGuards(AccessTokenGuard)
+  // @UseGuards(AccessTokenGuard)  ===> controller base guards.
   @Post('/create-many')
   createManyUsers(@Body() createManyUsersDto: CreateManyUsersDto) {
     return this.usersService.createManyUser(createManyUsersDto);
