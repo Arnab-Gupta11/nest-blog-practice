@@ -68,31 +68,7 @@ export class PostsService {
   /**
    * Create Post .
    */
-  public async createPost(createPostDto: CreatePostDto) {
-    const author = await this.usersService.findUserById(createPostDto.authorId);
-    let tags: CreateTagDto[] = [];
-    if (createPostDto.tags) {
-      tags = await this.tagService.findMultipleTags(createPostDto.tags);
-    }
-
-    let newPost: Post | null = null;
-
-    // ৩. Create Post
-    if (author) {
-      newPost = this.postsRepository.create({
-        ...createPostDto,
-        author: author,
-        tags: tags,
-      });
-    }
-
-    if (newPost) {
-      const result = await this.postsRepository.save(newPost);
-      return result;
-    }
-
-    return null;
-  }
+  public async createPost(createPostDto: CreatePostDto) {}
 
   /**
    * Update Post.
