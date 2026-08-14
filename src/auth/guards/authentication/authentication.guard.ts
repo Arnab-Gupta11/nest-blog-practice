@@ -5,7 +5,7 @@ import {
   UnauthorizedException,
 } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
-import { Observable } from 'rxjs';
+// import { Observable } from 'rxjs';
 import { AccessTokenGuard } from '../access-token/access-token.guard';
 import { AuthType } from 'src/auth/enums/auth-type.enum';
 import { AUTH_TYPE_KEY } from 'src/auth/constants/auth.constants';
@@ -30,10 +30,10 @@ export class AuthenticationGuard implements CanActivate {
 
     //authType from reflector
 
-    const authTypes = this.reflector.getAllAndOverride(AUTH_TYPE_KEY, [
-      context.getHandler(),
-      context.getClass(),
-    ]) ?? [AuthenticationGuard.defaultAuthType];
+    const authTypes = this.reflector.getAllAndOverride<AuthType[]>(
+      AUTH_TYPE_KEY,
+      [context.getHandler(), context.getClass()],
+    ) ?? [AuthenticationGuard.defaultAuthType];
     console.log('AUTH_TYPES===>', authTypes);
 
     //Array of guards
@@ -41,15 +41,15 @@ export class AuthenticationGuard implements CanActivate {
     console.log('ALL GUARDS===>', guards);
 
     //Default error
-    const error = new UnauthorizedException();
+    let error: Error = new UnauthorizedException();
 
     //Loop Guards canActivate
     for (const instance of guards) {
       console.log('Instances===>', instance);
       const canActivate = await Promise.resolve(
         instance.canActivate(context),
-      ).catch((err) => {
-        error: err;
+      ).catch((err: unknown) => {
+        error = err instanceof Error ? err : new UnauthorizedException(err);
       });
       console.log('CANACTIVATED===>', canActivate);
       if (canActivate) {

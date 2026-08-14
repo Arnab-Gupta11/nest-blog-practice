@@ -14,6 +14,8 @@ import { CreatePostDto } from './dtos/create-post.dto';
 import { ApiOperation, ApiResponse } from '@nestjs/swagger';
 import { PatchPostDTO } from './dtos/patch-post.dto';
 import { GetPostsDto } from './dtos/get-posts.dto';
+import { ActiveUser } from 'src/auth/decorators/active-user.decorator';
+import type { IActiveUser } from 'src/auth/interfaces/active-user.interface';
 
 @Controller('posts')
 export class PostsController {
@@ -33,7 +35,11 @@ export class PostsController {
     description: 'You get a 201 response if your post is created successfully',
   })
   @Post()
-  public createPost(@Body() createPostDto: CreatePostDto) {
+  public createPost(
+    @Body() createPostDto: CreatePostDto,
+    @ActiveUser() user: IActiveUser,
+  ) {
+    console.log('Active User', user);
     return this.postsService.createPost(createPostDto);
   }
 

@@ -1,4 +1,4 @@
-### Create Blog Post
+#eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjIsImVtYWlsIjoibWFyay5kb2VAZXhhbXBsZS5jb20iLCJpYXQiOjE3ODY2ODAzNjMsImV4cCI6MTc4NjY4Mzk2MywiYXVkIjoibG9jYWxob3N0OjMwMDAiLCJpc3MiOiJsb2NhbGhvc3Q6MzAwMCJ9.n3W7NRzUgPqE1xn56WSfV2HLmYA5TLzM9t72PToDczk## Create Blog Post
 # @name createPost
 
 < {%
@@ -8,16 +8,16 @@
 
 POST {{baseUrl}}/posts
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjIsImVtYWlsIjoibWFyay5kb2VAZXhhbXBsZS5jb20iLCJpYXQiOjE3ODY2ODQ5MTYsImV4cCI6MTc4NjY4ODUxNiwiYXVkIjoibG9jYWxob3N0OjMwMDAiLCJpc3MiOiJsb2NhbGhvc3Q6MzAwMCJ9._kToRHYAy-9Fn4uYq7sN8gILU5DHZExfwrMuC-9w5mI
 
 {
-  "title": "Scalable NestJS API Testing",
+  "title": "Scalable NestJS API Testing-1",
   "postType": "post",
-  "slug": "scalable-nestjs-api-testing",
+  "slug": "scalable-nestjs-api-testing-1",
   "status": "draft",
   "content": "A detailed guide on setting up modular HTTP requests using kulala.nvim.",
   "schema": "{\"type\":\"article\"}",
   "featuredImageUrl": "http://example.com/images/nest.png",
-  "publishOn":"{{currentIsoDate}}",
   "authorId": 1,
   "tags": [1]
 }
