@@ -8,16 +8,15 @@
 
 POST {{baseUrl}}/posts
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjIsImVtYWlsIjoibWFyay5kb2VAZXhhbXBsZS5jb20iLCJpYXQiOjE3ODY2ODQ5MTYsImV4cCI6MTc4NjY4ODUxNiwiYXVkIjoibG9jYWxob3N0OjMwMDAiLCJpc3MiOiJsb2NhbGhvc3Q6MzAwMCJ9._kToRHYAy-9Fn4uYq7sN8gILU5DHZExfwrMuC-9w5mI
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjIsImVtYWlsIjoibWFyay5kb2VAZXhhbXBsZS5jb20iLCJpYXQiOjE3ODY3NzEzODQsImV4cCI6MTc4Njc3NDk4NCwiYXVkIjoibG9jYWxob3N0OjMwMDAiLCJpc3MiOiJsb2NhbGhvc3Q6MzAwMCJ9.DgsJSYXzIKBynLaRYcVGmc13osEDiK9FB9rWLhr_9_o
 
 {
-  "title": "Scalable NestJS API Testing-1",
+  "title": "Scalable NestJS API Testing-2",
   "postType": "post",
-  "slug": "scalable-nestjs-api-testing-1",
+  "slug": "scalable-nestjs-api-testing-2",
   "status": "draft",
   "content": "A detailed guide on setting up modular HTTP requests using kulala.nvim.",
   "schema": "{\"type\":\"article\"}",
   "featuredImageUrl": "http://example.com/images/nest.png",
-  "authorId": 1,
   "tags": [1]
 }

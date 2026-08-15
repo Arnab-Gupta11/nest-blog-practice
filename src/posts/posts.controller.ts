@@ -40,7 +40,7 @@ export class PostsController {
     @ActiveUser() user: IActiveUser,
   ) {
     console.log('Active User', user);
-    return this.postsService.createPost(createPostDto);
+    return this.postsService.createPost(createPostDto, user);
   }
 
   @ApiOperation({

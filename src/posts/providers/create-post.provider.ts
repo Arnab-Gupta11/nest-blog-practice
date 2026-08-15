@@ -1,4 +1,8 @@
-import { Injectable } from '@nestjs/common';
+import {
+  BadRequestException,
+  ConflictException,
+  Injectable,
+} from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { UsersService } from 'src/users/providers/users.service';
 import { Post } from '../post.entity';
@@ -7,6 +11,7 @@ import { TagsService } from 'src/tags/providers/tags.service';
 import { CreatePostDto } from '../dtos/create-post.dto';
 import { IActiveUser } from 'src/auth/interfaces/active-user.interface';
 import { CreateTagDto } from 'src/tags/dtos/create-tag.dto';
+import { User } from 'src/users/user.entity';
 
 @Injectable()
 export class CreatePostProvider {
@@ -24,10 +29,19 @@ export class CreatePostProvider {
     private readonly tagService: TagsService,
   ) {}
   public async createPost(createPostDto: CreatePostDto, user: IActiveUser) {
-    const author = await this.usersService.findUserById(user.sub);
     let tags: CreateTagDto[] = [];
-    if (createPostDto.tags) {
-      tags = await this.tagService.findMultipleTags(createPostDto.tags);
+    let author: User | null = null;
+    try {
+      author = await this.usersService.findUserById(user.sub);
+      if (createPostDto.tags) {
+        tags = await this.tagService.findMultipleTags(createPostDto.tags);
+      }
+    } catch (error) {
+      throw new ConflictException(error);
+    }
+
+    if (createPostDto.tags?.length !== tags.length) {
+      throw new BadRequestException('please check your tag IDs');
     }
 
     let newPost: Post | null = null;
@@ -42,10 +56,16 @@ export class CreatePostProvider {
     }
 
     if (newPost) {
-      const result = await this.postsRepository.save(newPost);
-      return result;
+      try {
+        const result = await this.postsRepository.save(newPost);
+        return result;
+      } catch (error) {
+        throw new ConflictException(error, {
+          description: 'Ensure post slug is unique and not a duplicate.',
+        });
+      }
     }
 
-    return null;
+    // return null;
   }
 }
