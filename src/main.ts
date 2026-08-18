@@ -2,9 +2,15 @@ import { ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
+import { DataResponseInterceptor } from './common/interceptors/data-response.interceptor';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+
+  //enable cors
+  app.enableCors();
+
+  //Add Global Pipe
   app.useGlobalPipes(
     new ValidationPipe({
       whitelist: true,
@@ -15,6 +21,10 @@ async function bootstrap() {
       },
     }),
   );
+  //Add Global Interceptor
+  // app.useGlobalInterceptors(new DataResponseInterceptor());
+
+  //Swagger Documentation
   const config = new DocumentBuilder()
     //Swagger Configuration:
     .setVersion('1.0')

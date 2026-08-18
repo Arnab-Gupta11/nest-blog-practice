@@ -1,3 +1,4 @@
+import { Exclude } from 'class-transformer';
 import { Post } from 'src/posts/post.entity';
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 
@@ -33,10 +34,9 @@ export class User {
     length: 96,
     nullable: false,
   })
+  @Exclude()
   password: string;
 
-  @OneToMany(()=>Post, (post)=>post.author) //In One to Many, Many to one Relation dont need to specify JoinColumn decorator. Foreign key always create in Many side.
-  posts:Post[]
-
-
+  @OneToMany(() => Post, (post) => post.author) //In One to Many, Many to one Relation dont need to specify JoinColumn decorator. Foreign key always create in Many side.
+  posts: Post[];
 }
