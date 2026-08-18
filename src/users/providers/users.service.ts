@@ -8,6 +8,7 @@ import { CreateManyUsersDto } from '../dtos/create-many-users.dto';
 import { CreateManyUsersProvider } from './create-many-users.provider';
 import { CreateUserProvider } from './create-user.provider';
 import { FindUserByEmailProvider } from './find-user-by-email.provider';
+import { FindUserByIdProvider } from './find-user-by-id.provider';
 
 @Injectable()
 export class UsersService {
@@ -38,6 +39,10 @@ export class UsersService {
      * Injecting find user by email  provider
      */
     private readonly findUserByEmailProvider: FindUserByEmailProvider,
+    /**
+     * Injecting find user by id  provider
+     */
+    private readonly findUserByIdProvider: FindUserByIdProvider,
   ) {}
 
   public findAllUsers() {
@@ -49,9 +54,7 @@ export class UsersService {
   }
 
   public findUserById(userId: number) {
-    return this.userRepository.findOneBy({
-      id: userId,
-    });
+    return this.findUserByIdProvider.findOneUserById(userId);
   }
 
   //Find user by email

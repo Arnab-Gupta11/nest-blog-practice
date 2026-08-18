@@ -1,0 +1,7 @@
+# @name refresh token
+POST {{baseUrl}}/auth/refresh-tokens
+Content-Type: application/json
+
+{
+  "refreshToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjIsImVtYWlsIjoibWFyay5kb2VAZXhhbXBsZS5jb20iLCJpYXQiOjE3ODcwMjYyMjksImV4cCI6MTc4NzAyOTgyOSwiYXVkIjoibG9jYWxob3N0OjMwMDAiLCJpc3MiOiJsb2NhbGhvc3Q6MzAwMCJ9.KVfkt5na9-_rMDJMWZpOawzWvUuyKTOMkFllE04HFrM"
+}
